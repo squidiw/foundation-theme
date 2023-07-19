@@ -1,0 +1,12 @@
+.config/
+.github/
+node_modules/
+.gitignore
+src/
+.theme-check.yml
+LICENSE.md
+translation.yml
+package.json
+jsconfig.json
+package-lock.json
+yarn.lock
