@@ -18,7 +18,7 @@ module.exports = merge(common, {
      * docs: https://www.npmjs.com/package/stylelint-webpack-plugin
      */
     new StylelintPlugin({
-      files: 'src/**/*.{vue,css,sass,scss}',
+      files: 'src/**/*.{css,sass,scss}',
       configFile: path.resolve(__dirname, '../.stylelintrc.js')
     })
   ]
