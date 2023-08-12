@@ -15,11 +15,11 @@
     "lint": "run-s -c lint:*",
     "lint:js": "eslint src/**/*.{js} --config .config/.eslintrc.js",
     "lint:css": "stylelint src/**/*.{css,sass,scss} --config .config/.stylelintrc.js",
-    "lint:shopify": "cd shopify && shopify theme check",
+    "lint:shopify": "shopify theme check",
     "fix": "run-s -c fix:*",
     "fix:js": "eslint src/**/*.{js} --config .config/.eslintrc.js --fix",
     "fix:css": "stylelint src/**/*.{css,sass,scss} --config .config/.stylelintrc.js --fix",
-    "fix:shopify": "cd shopify && shopify theme check -a"
+    "fix:shopify": "shopify theme check -a"
   },
   "dependencies": {
     "alpinejs": "^3.12.3",
