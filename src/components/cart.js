@@ -1,11 +1,10 @@
+import Alpine from "alpinejs";
 
-
-let fl = 'cart.js'
-console.log(fl)
-
-export default fl
-// import Alpine from "alpinejs"
-
+Alpine.store('cart',{
+    logEvent(event){
+        console.log(event.target.classList)
+    }
+})
 
 // Alpine.store('cart', {
 //   logEvent(event) {
@@ -40,5 +39,5 @@ export default fl
 //            .catch((error) => {
 //              console.error('Error:', error);
 //            });
-           
-// })
+//     })
+// }

@@ -17,6 +17,6 @@ module.exports = {
   plugins: [],
   content: [
     path.resolve(__dirname, '**/*.{js,vue}'),
-    path.resolve(__dirname, '../shopify/**/*.liquid')
+    path.resolve(__dirname, '../**/*.liquid')
   ]
 }

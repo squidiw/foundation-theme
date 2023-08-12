@@ -255,6 +255,7 @@
       </button>
     {% endform %}
     <button
+      @click="$store.cart.logEvent"
       class="inline-block bg-black p-4 text-white mt-3"
     >
       CHECKING

@@ -6,7 +6,7 @@ module.exports = {
   stats: 'minimal',
   entry: path.resolve(__dirname, '../../src/main.js'),
   output: {
-    path: path.resolve(__dirname, '../../shopify/assets/'),
+    path: path.resolve(__dirname, '../../assets/'),
     filename: 'bundle.js'
   },
   resolve: {

@@ -1,6 +1,6 @@
-/*!**************************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-2.use[2]!./src/css/main.css ***!
-  \**************************************************************************************************************************************/
+/*!******************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[1].use[2]!./src/css/main.css ***!
+  \******************************************************************************************************************************************/
 /**
  * entry file for Tailwind CSS
  * and other style files
@@ -707,6 +707,9 @@ select {
 .mt-2 {
   margin-top: 0.5rem;
 }
+.mt-3 {
+  margin-top: 0.75rem;
+}
 .mt-4 {
   margin-top: 1rem;
 }
@@ -730,6 +733,9 @@ select {
 }
 .hidden {
   display: none;
+}
+.aspect-auto {
+  aspect-ratio: auto;
 }
 .h-12 {
   height: 3rem;
@@ -770,6 +776,9 @@ select {
 .h-full {
   height: 100%;
 }
+.min-h-\[100px\] {
+  min-height: 100px;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -803,6 +812,9 @@ select {
 .w-full {
   width: 100%;
 }
+.min-w-\[100px\] {
+  min-width: 100px;
+}
 .max-w-screen-lg {
   max-width: 1024px;
 }
@@ -829,6 +841,9 @@ select {
 }
 .select-none {
   user-select: none;
+}
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
 }
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1050,6 +1065,9 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(254 249 195 / var(--tw-bg-opacity));
 }
+.object-contain {
+  object-fit: contain;
+}
 .object-cover {
   object-fit: cover;
 }
@@ -1233,9 +1251,6 @@ select {
 }
 .underline {
   text-decoration-line: underline;
-}
-.filter {
-  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
