@@ -1,5 +1,6 @@
 <div
   x-cloak
+  x-transition
   x-show="$store.global.isMobileMenuVisible"
   class="w-full max-w-screen-md h-full md:hidden bg-white border-l top-0 right-0 {{ class | default: '' }}"
   :class="$store.global.isMobileMenuVisible ? 'fixed' : '' "
