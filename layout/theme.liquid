@@ -48,6 +48,11 @@
       {% render 'layout-mobile-menu' %}
     </div>
 
+    {% comment %}Liquid-ajax-cart{% endcomment %}
+    <script type="application/json" data-ajax-cart-initial-state>
+      {{ cart | json }}
+    </script>
+
     <!-- webpack bundle -->
     <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
   </body>
