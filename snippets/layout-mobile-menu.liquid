@@ -1,8 +1,14 @@
-<div v-if="$store.state['mobile-menu'].visible" class="w-full max-w-screen-md h-full md:hidden bg-white border-l fixed top-0 right-0 {{ class | default: '' }}" style="{{ style | default: '' }}">
+<div
+  x-cloak
+  x-show="$store.global.isMobileMenuVisible"
+  class="w-full max-w-screen-md h-full md:hidden bg-white border-l top-0 right-0 {{ class | default: '' }}"
+  :class="$store.global.isMobileMenuVisible ? 'fixed' : '' "
+  style="{{ style | default: '' }}"
+>
   <div class="border-b p-4">
     <button
+      @click="$store.global.closeMobileMenu()"
       class="flex justify-center items-center"
-      @click="$store.dispatch('mobile-menu/hide')"
     >
       {% render 'icon-cancel', class: 'w-6 h-auto mr-1' %}
 
