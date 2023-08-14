@@ -216,11 +216,11 @@
   {% endfor %}
   <div>
     <h1>{{ product.title }}</h1>
-    <div class="product-price">
-      <p class="line-through">
-        {{ product.selected_or_first_available_variant.compare_at_price | money_without_trailing_zeros }}
+    <div class="product-prices">
+      <p class="line-through product-compare {% if product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}hidden{% endif %}">
+        {{ product.selected_or_first_available_variant.compare_at_price | money_with_currency }}
       </p>
-      <p>{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</p>
+      <p class="product-price">{{ product.selected_or_first_available_variant.price | money_with_currency }}</p>
     </div>
     <p>{{ product.description }}</p>
     {% form 'product', product %}
@@ -300,7 +300,12 @@
     window.history.replaceState(null, null, url.toString());
 
     // Change prices when on variant change
-    document.querySelector('.product-price').textContent = matchedVariant.price
+    document.querySelector('.product-price').textContent = _formatMoney(matchedVariant.price, "{{ shop.money_format }}")
+    document.querySelector('.product-compare').textContent = _formatMoney(matchedVariant.compare_at_price, "{{ shop.money_format }}")
+
+    matchedVariant.compare_at_price > matchedVariant.price ?
+    document.querySelector('.product-compare').classList.remove('hidden') :
+    document.querySelector('.product-compare').classList.add('hidden')
 
     })
   })

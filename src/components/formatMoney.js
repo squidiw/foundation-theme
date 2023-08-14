@@ -46,3 +46,5 @@ Shopify.formatMoney = function(cents, format) {
 
   return formatString.replace(placeholderRegex, value);
 };
+
+export default Shopify.formatMoney

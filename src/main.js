@@ -10,9 +10,9 @@ import 'liquid-ajax-cart';
 
 import './css/main.css'
 import './components/cart'
-import './components/formatMoney.js'
+import formatMoney from './components/formatMoney'
 
-
+window._formatMoney = formatMoney
 
 // Register and initialize AlpineJS
 window.Alpine = Alpine
