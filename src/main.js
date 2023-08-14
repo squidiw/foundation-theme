@@ -10,6 +10,7 @@ import 'liquid-ajax-cart';
 
 import './css/main.css'
 import './components/cart'
+import './components/formatMoney.js'
 
 
 

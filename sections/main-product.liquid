@@ -215,37 +215,48 @@
     </div>
   {% endfor %}
   <div>
+    <h1>{{ product.title }}</h1>
+    <div class="product-price">
+      <p class="line-through">
+        {{ product.selected_or_first_available_variant.compare_at_price | money_without_trailing_zeros }}
+      </p>
+      <p>{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</p>
+    </div>
+    <p>{{ product.description }}</p>
     {% form 'product', product %}
-      <h1>{{ product.title }}</h1>
-      <p>{{ product.price | money_without_trailing_zeros }}</p>
-      <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-      {% assign variable = value %}
+      <input type="hidden" id="variant-id" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
       {% unless product.has_only_default_variant %}
-        {% for option in product.options_with_values %}
-          <fieldset>
-            <legend>{{ option.name }}</legend>
-            {% for value in option.values %}
-              <div>
-                <input
-                  {% if option.selected_value == value %}
-                    checked
-                  {% endif %}
-                  type="radio"
-                  name="{{ option.name }}"
-                  value="{{ value }}"
-                  id="{{ option.name | handleize }}-{{ value | handleize }}"
-                >
-                <label for="{{ option.name | handleize }}-{{ value | handleize }}">{{ value }}</label>
-              </div>
-            {% endfor %}
-          </fieldset>
-        {% endfor %}
+        <div class="product-option">
+          {% for option in product.options_with_values %}
+            <fieldset>
+              <legend>{{ option.name }}</legend>
+              {% for value in option.values %}
+                <div>
+                  <input
+                    {% if option.selected_value == value %}
+                      checked
+                    {% endif %}
+                    type="radio"
+                    name="{{ option.name }}"
+                    value="{{ value }}"
+                    id="{{ option.name | handleize }}-{{ value | handleize }}"
+                    class="cursor-pointer"
+                  >
+                  <label for="{{ option.name | handleize }}-{{ value | handleize }}">{{ value }}</label>
+                </div>
+              {% endfor %}
+            </fieldset>
+          {% endfor %}
+        </div>
       {% endunless %}
 
       <div class="product-option">
         <label for="quantity">Quantity</label>
         <input id="quantity" name="quantity" value="1" class>
+      </div>
+      <div data-ajax-cart-messages="form">
+        <!-- Errors and messages appear here -->
       </div>
       <button
         type="submit"
@@ -254,11 +265,43 @@
         add to cart
       </button>
     {% endform %}
-    <button
-      @click="$store.cart.logEvent"
-      class="inline-block bg-black p-4 text-white mt-3"
-    >
-      CHECKING
-    </button>
   </div>
 </div>
+<script>
+  let product = {{ product | json }}
+
+  document.querySelectorAll('.product-option input[type="radio"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      //Find selected options
+    let selectedOptions = []
+
+    document.querySelectorAll('.product-option input[type="radio"]:checked').forEach(radio => {
+      selectedOptions.push(radio.value)
+    })
+
+    // Find the matched variant
+    let matchedVariant =  product.variants.find( variant => {
+      let pass = true;
+      for( var i = 0; i < selectedOptions.length; i++ ){
+        if( selectedOptions.indexOf(variant.options[i]) == -1){
+          pass =  false;
+          break
+        }
+      }
+      return pass
+    })
+
+    // Change product form variant id
+    document.getElementById('variant-id').value = matchedVariant.id;
+
+    // Update product variant URL
+    let url = new URLParse(window.location.href, true)
+    url.query.variant = matchedVariant.id;
+    window.history.replaceState(null, null, url.toString());
+
+    // Change prices when on variant change
+    document.querySelector('.product-price').textContent = matchedVariant.price
+
+    })
+  })
+</script>

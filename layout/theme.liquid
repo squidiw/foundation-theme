@@ -52,6 +52,8 @@
     <script type="application/json" data-ajax-cart-initial-state>
       {{ cart | json }}
     </script>
+    {% comment %} URL Parse for updating product variant URLs {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/url-parse@1.5.10/dist/url-parse.min.js"></script>
 
     <!-- webpack bundle -->
     <script src="{{ 'bundle.js' | asset_url }}" defer="defer"></script>
